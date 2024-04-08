@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { HookProps } from './type';
+import type { HookProps } from './type';
 import { optimization } from '../utils';
 import { ReadingProgress } from './core';
 

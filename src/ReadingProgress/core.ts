@@ -1,9 +1,5 @@
 abstract class ReadingProgressCore {
-  abstract get rootSelector():
-    | (Window & typeof globalThis)
-    | HTMLElement
-    | null;
-
+  abstract get rootSelector(): Window | HTMLElement | null;
   abstract getProgress: () => number;
   abstract getViewportHeight: () => number;
 }

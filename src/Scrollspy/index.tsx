@@ -1,5 +1,6 @@
 import { RefObject } from 'react';
 import { useScrollspy } from './useScrollspy';
+import type { ScrollspyProps } from './type';
 
 export { useScrollspy };
 
@@ -8,18 +9,7 @@ export const Scrollspy = ({
   sectionRefs,
   rootSelector,
   offset,
-}: {
-  children: ({
-    elementsStatusInViewport,
-    currentElementIndexInViewport,
-  }: {
-    elementsStatusInViewport: boolean[];
-    currentElementIndexInViewport: number;
-  }) => JSX.Element;
-  sectionRefs: RefObject<Element>[];
-  rootSelector?: string;
-  offset?: number;
-}) => {
+}: ScrollspyProps) => {
   const {
     elementsStatusInViewport,
     currentElementIndexInViewport,
@@ -34,3 +24,4 @@ export const Scrollspy = ({
     currentElementIndexInViewport,
   });
 };
+

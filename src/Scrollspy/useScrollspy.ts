@@ -1,24 +1,24 @@
-import {
-  RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { type RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { RootEl } from './RootEl';
-import { RootWindow } from './RootWindow';
+import type { RootWindow } from './RootWindow';
 import { RootFactory } from './RootFactory';
+
+interface UseScrollspyParams {
+  sectionRefs: RefObject<Element>[];
+  rootSelector?: string;
+  offset?: number;
+}
+
+interface UseScrollspyResult {
+  elementsStatusInViewport: boolean[];
+  currentElementIndexInViewport: number;
+}
 
 export const useScrollspy = ({
   sectionRefs,
   rootSelector,
   offset = 0,
-}: {
-  sectionRefs: RefObject<Element>[];
-  rootSelector?: string;
-  offset?: number;
-}) => {
+}: UseScrollspyParams): UseScrollspyResult => {
   const rootEl = useRef<RootWindow | RootEl | null>(null);
 
   useEffect(() => {

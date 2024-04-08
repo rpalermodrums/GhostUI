@@ -1,4 +1,4 @@
-import { useReadingProgress } from './useReadingProgress';
+import type { useReadingProgress } from './useReadingProgress';
 
 export type HookProps = {
   targetEl?: string;
@@ -8,3 +8,14 @@ export type HookProps = {
 export type ComponentProps = {
   children: (arg1: ReturnType<typeof useReadingProgress>) => JSX.Element;
 } & HookProps;
+
+export interface ReadingProgressProps {
+  targetEl?: string;
+  rootEl?: string;
+  children: (progress: ReadingProgressState) => JSX.Element;
+}
+
+export interface ReadingProgressState {
+  value: number;
+}
+

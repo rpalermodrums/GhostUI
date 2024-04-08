@@ -1,13 +1,11 @@
-export type UsePaginationProps = {
+export interface UsePaginationProps {
   totalPage: number;
   currentPage: number;
   middlePagesSiblingCount?: number;
   edgePageCount?: number;
-};
+}
 
-export type UsePagination = (
-  args0: UsePaginationProps
-) => {
+export interface PaginationResult {
   getMiddlePages: () => number[];
   hasPreviousPage: () => boolean;
   hasNextPage: () => boolean;
@@ -17,4 +15,5 @@ export type UsePagination = (
   isNextTruncable: () => boolean;
   totalPage: number;
   currentPage: number;
-};
+}
+

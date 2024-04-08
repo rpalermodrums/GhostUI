@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Pagination } from './core';
-import { UsePagination } from './types';
+import type { UsePagination } from './types';
 
 const MIDDLE_PAGES_SIBLING_COUNT = 2;
 const EDGE_PAGE_COUNT = 2;

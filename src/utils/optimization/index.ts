@@ -1,31 +1,23 @@
-export const debounce = <F extends Function>(callback: F) => {
-  let reqID: number | null = null;
-
-  const exec = (args: F['arguments']) => () => {
-    // @ts-ignore TS2488
-    callback(...args);
-  };
-
-  return (...args: F['arguments']) => {
-    if (reqID) {
-      cancelAnimationFrame(reqID);
+export function debounce<F extends (...args: any[]) => void>(callback: F, delay = 300): (...args: Parameters<F>) => void {
+  let timerId: number | null = null;
+  return (...args: Parameters<F>) => {
+    if (timerId !== null) {
+      clearTimeout(timerId);
     }
-    reqID = requestAnimationFrame(exec(args));
+    timerId = window.setTimeout(() => {
+      callback(...args);
+    }, delay);
   };
-};
+}
 
-export const throttle = <F extends Function>(callback: F) => {
-  let reqID: number | null = null;
-
-  const exec = (args: F['arguments']) => () => {
-    // @ts-ignore TS2488
-    callback(...args);
-    reqID = null;
-  };
-
-  return (...args: F['arguments']) => {
-    if (!reqID) {
-      reqID = requestAnimationFrame(exec(args));
+export function throttle<F extends (...args: any[]) => void>(callback: F, limit = 300): (...args: Parameters<F>) => void {
+  let inThrottle: boolean;
+  return (...args: Parameters<F>) => {
+    if (!inThrottle) {
+      callback(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
-};
+}
+

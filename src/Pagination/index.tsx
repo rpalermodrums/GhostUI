@@ -1,25 +1,18 @@
 import { usePagination } from './usePagination';
-import { UsePaginationProps } from './types';
+import type { UsePaginationProps, PaginationResult } from './types';
 
-type PaginationProps = {
-  children: (arg0: ReturnType<typeof usePagination>) => JSX.Element;
-} & UsePaginationProps;
+interface PaginationProps extends UsePaginationProps {
+  children: (pagination: PaginationResult) => JSX.Element;
+}
 
 export { usePagination };
 
 export const Pagination = ({
   children,
-  totalPage,
-  currentPage,
-  middlePagesSiblingCount,
-  edgePageCount,
+  ...props
 }: PaginationProps) => {
-  const pagination = usePagination({
-    totalPage,
-    currentPage,
-    middlePagesSiblingCount,
-    edgePageCount,
-  });
+  const pagination = usePagination(props);
 
   return children(pagination);
 };
+
